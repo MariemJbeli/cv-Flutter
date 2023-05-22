@@ -37,6 +37,7 @@ dependencies:
   geolocator: 
   geocoding: 
   http:
+  animations: ^2.0.0
   flutter:
     sdk: flutter
 
