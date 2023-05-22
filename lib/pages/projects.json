@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "username": "ismahen",
+      "password": "123123123",
+      "id": 1
+    }
+  ],
+  "projects": [
+    {
+      "title": "TodoApp",
+      "description": "MEVN/vuex/sass/bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126205/cooli8t4dlvtnwqduidi.png",
+      "id": 1
+    },
+    {
+      "title": "restaurant management",
+      "description": "vue.js/Bootstrap/json-server",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126258/ricwpg9gm2pbwrhfsqyt.png",
+      "id": 2
+    },
+    {
+      "title": "websitestatic",
+      "description": "vue.js/Bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126312/bu4zuexyglnrrqyxe5oi.png",
+      "id": 3
+    },
+    {
+      "title": "work_website",
+      "description": "MEAN STACK/Bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126358/o3nurgwzisy9yo0ogysl.png",
+      "id": 4
+    },
+    {
+      "title": "dashbord(gestion des employés)",
+      "description": "MEAN STACK/Bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126421/g6xhk2ekrvfaziqu8rop.png",
+      "id": 5
+    },
+    {
+      "title": "social-app ",
+      "description": "MERN STACK/Tailwindcss",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126461/yuomwkfbff5xl8qsuuwz.png",
+      "id": 6
+    },
+    {
+      "title": "shop",
+      "description": "Html/Css/sass/javascript/typscript",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126502/k7nywsvvudnsioslsa2o.png",
+      "id": 7
+    },
+    {
+      "title": "resume-website",
+      "description": "react&redux/Material-ui",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126542/a2yx8jhuq593cfqmsyqy.png",
+      "id": 8
+    },
+    {
+      "title": "e-commerce-clothes",
+      "description": "react&redux/bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126580/moxxrno6xhmbdp8tkj5i.png",
+      "id": 9
+    },
+    {
+      "title": "catstore",
+      "description": "react&redux/bootstrap",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126609/qwgqrdcdp1kjkdofosgc.png",
+      "id": 10
+    }
+  ]
+}
