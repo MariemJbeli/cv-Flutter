@@ -70,24 +70,19 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - images/sp.jpeg
-    - images/apropos copy.png
-    - images/apropos.png
-    - images/clear.png
-    - images/clouds.png
-    - images/snaw.png
-    - images/rain.png
-    - images/contact.png
-    - images/deconnexion.png
-    - images/endroits.png
-    - images/pays.png
-    - images/galerie.png
-    - images/meteo.png
-    - images/parametres.png
-    - images/priere.png
-    - images/recherche.png
+  assets:  
     - images/ismahen.jpeg
+    - images/laravel.png
+    - images/js.png
+    - images/reactjs.png
+    - images/angular.png
+    - images/vuejs.png
+    - images/tailwindcss.png
+    - images/express.png
+    - images/tailwindcss.png
+    - images/bootstrap.png
+    - 'images/mongodb.png'
+    - 'images/mysql.png'
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_key_in_widget_constructors, must_be_immutable, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutterauth3/pages/CompetancePage.dart';
+import 'package:flutterauth3/pages/EducationPage.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'AboutMePage.dart';
@@ -19,7 +21,8 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     AboutMePage1(),
     ProjectsPage1(),
-    EducationPage(),
+    EducationPage1(),
+    CompetancePage1(),
   ];
 
   void _onItemTapped(int index) {
@@ -81,6 +84,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.school),
             label: 'Education',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.code), // Remplacez ici par l'icône correspondante
+            label: 'Competence',
+          ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -122,16 +129,24 @@ class ProjectsPage1 extends StatelessWidget {
   }
 }
 
-class EducationPage extends StatelessWidget {
-  const EducationPage({Key? key}) : super(key: key);
+class EducationPage1 extends StatelessWidget {
+  const EducationPage1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Education Page',
-        style: TextStyle(fontSize: 24),
-      ),
+    return Scaffold(
+      body: EducationPage(),
+    );
+  }
+}
+
+class CompetancePage1 extends StatelessWidget {
+  const CompetancePage1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CompetancePage(),
     );
   }
 }

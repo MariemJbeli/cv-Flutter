@@ -33,7 +33,7 @@ class AboutMePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at urna sit amet nulla euismod cursus. Fusce sagittis massa vitae massa porta interdum. In id enim sapien. Suspendisse viverra, ex sed viverra luctus, mi ligula dapibus tellus, sit amet convallis nibh risus ac libero. Vivamus mattis nisi non turpis varius varius. Aenean eleifend, sem eu bibendum pharetra, erat arcu fringilla felis, in scelerisque lacus dui vel neque. Sed iaculis leo ut elit tempus sagittis. Curabitur posuere est sit amet consectetur tristique. Duis vitae ullamcorper turpis.',
+                "En tant que perfectionniste et créatif, j'ai plaisir à apporter une valeur ajoutée et à contribuer à l'amélioration de ce qui existe déjà. Je suis également dynamique et je préfère travailler en équipe pour relever des défis techniques. Avec une solide maîtrise des outils de développement, je suis constamment en quête de nouvelles connaissances et compétences.",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
