@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_key_in_widget_constructors, must_be_immutable, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'AboutMePage.dart';
 import 'package:flutterauth3/pages/Project.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,8 +64,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-
-     
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -106,11 +105,8 @@ class AboutMePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'About Page',
-        style: TextStyle(fontSize: 24),
-      ),
+    return Scaffold(
+      body: AboutMePage(),
     );
   }
 }
