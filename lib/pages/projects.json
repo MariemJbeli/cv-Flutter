@@ -2,8 +2,13 @@
   "users": [
     {
       "username": "ismahen",
-      "password": "123123123",
+      "password": "123123",
       "id": 1
+    },
+    {
+      "username": "ikram",
+      "password": "123",
+      "id": 2
     }
   ],
   "projects": [

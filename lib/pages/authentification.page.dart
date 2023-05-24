@@ -106,6 +106,7 @@ class AuthentificationPage extends StatelessWidget {
         if (user['username'] == username && user['password'] == password) {
           final prefs = await SharedPreferences.getInstance();
           prefs.setBool('connecte', true);
+          prefs.setString("username", txt_login.text);
           Navigator.pushReplacementNamed(context, '/home');
           return;
         }

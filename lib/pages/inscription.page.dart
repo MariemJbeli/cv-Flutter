@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_cast
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -108,6 +110,7 @@ class InscriptionPage extends StatelessWidget {
     if (response.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool('connecte', true);
+      prefs.setString("username", txt_login.text);
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       showDialog(
