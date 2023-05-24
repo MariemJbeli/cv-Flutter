@@ -1,11 +1,10 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print, use_build_context_synchronously, file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutterauth3/pages/Project.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProjectPage extends StatefulWidget {
   const AddProjectPage({Key? key}) : super(key: key);
@@ -42,6 +41,10 @@ class _AddProjectPageState extends State<AddProjectPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getInt(
+          'id'); // Récupérer l'ID de l'utilisateur depuis le localStorage
+
       final response = await http.post(
         Uri.parse('http://localhost:3000/projects'),
         headers: {'Content-Type': 'application/json'},
@@ -49,12 +52,12 @@ class _AddProjectPageState extends State<AddProjectPage> {
           'title': _title,
           'description': _description,
           'imageUrl': imageUrl,
+          'userId': userId, // Ajouter l'ID de l'utilisateur dans la requête
         }),
       );
 
       if (response.statusCode == 201) {
-        setState(() {});
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ProjectsPage()),
         );

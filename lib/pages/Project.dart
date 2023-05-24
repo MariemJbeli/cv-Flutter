@@ -1,23 +1,8 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'AddProject.dart';
 import 'dart:convert';
-
-// class ProjectService {
-//   static const String baseUrl = 'http://localhost:3000';
-
-//   static Future<List<Project>> getProjects() async {
-//     final response = await http.get(Uri.parse('$baseUrl/projects'));
-//     if (response.statusCode == 200) {
-//       List<dynamic> projectsJson = jsonDecode(response.body);
-//       return projectsJson.map((json) => Project.fromJson(json)).toList();
-//     } else {
-//       throw Exception('Failed to load projects');
-//     }
-//   }
-// }
 
 class Project {
   final String title;
@@ -47,9 +32,12 @@ class _ProjectsPageState extends State<ProjectsPage> {
   List<Project> _projects = [];
 
   Future<void> _fetchProjects() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/projects'));
-    final List<dynamic> projectsJson = json.decode(response.body);
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs
+        .getInt('id'); // Récupérer l'ID de l'utilisateur depuis le localStorage
+    final response = await http
+        .get(Uri.parse('http://localhost:3000/projects?userId=$userId'));
+    final List<dynamic> projectsJson = jsonDecode(response.body);
     setState(() {
       _projects = projectsJson.map((json) => Project.fromJson(json)).toList();
     });
