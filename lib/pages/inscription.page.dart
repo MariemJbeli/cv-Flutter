@@ -15,6 +15,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
   TextEditingController txt_password = TextEditingController();
   String? _imageUrl;
   final cloudinary = CloudinaryPublic('dcd85e7v0', 'lcxie1ud', cache: false);
+
   Future<void> _uploadImage() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -56,7 +57,46 @@ class _InscriptionPageState extends State<InscriptionPage> {
       );
       return;
     }
-
+    if (username == "") {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('username is required'),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+    if (password == "") {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('password is required'),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
     final response = await http.get(
       Uri.parse('http://localhost:3000/users?username=$username'),
     );
@@ -97,9 +137,15 @@ class _InscriptionPageState extends State<InscriptionPage> {
     );
 
     if (postResponse.statusCode == 201) {
+      final jsonData = jsonDecode(postResponse.body);
+      int id = jsonData['id'];
+
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool('connecte', true);
       prefs.setString('username', username);
+      prefs.setInt(
+          'id', id); // Sauvegarder l'ID de l'utilisateur dans le localStorage
+
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       showDialog(

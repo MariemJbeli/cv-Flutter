@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +7,52 @@ class AuthentificationPage extends StatelessWidget {
   late SharedPreferences prefs;
   TextEditingController txt_login = TextEditingController();
   TextEditingController txt_password = TextEditingController();
+
+  void onAuthentifier(BuildContext context) async {
+    final String apiUrl =
+        'http://localhost:3000/users'; // Replace with your JSON server URL
+
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> users = jsonDecode(response.body);
+
+      final String username = txt_login.text;
+      final String password = txt_password.text;
+
+      for (final user in users) {
+        if (user['username'] == username && user['password'] == password) {
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setBool('connecte', true);
+          prefs.setString('username', txt_login.text);
+          prefs.setInt(
+              'id',
+              user[
+                  'id']); // Sauvegarder l'ID de l'utilisateur dans le localStorage
+          Navigator.pushReplacementNamed(context, '/home');
+          return;
+        }
+      }
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text('Invalid username or password. Please try again.'),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,48 +133,6 @@ class AuthentificationPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void onAuthentifier(BuildContext context) async {
-    final String apiUrl =
-        'http://localhost:3000/users'; // Replace with your JSON server URL
-
-    final response = await http.get(Uri.parse(apiUrl));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> users = jsonDecode(response.body);
-
-      final String username = txt_login.text;
-      final String password = txt_password.text;
-
-      for (final user in users) {
-        if (user['username'] == username && user['password'] == password) {
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setBool('connecte', true);
-          prefs.setString("username", txt_login.text);
-          Navigator.pushReplacementNamed(context, '/home');
-          return;
-        }
-      }
-    }
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text('Invalid username or password. Please try again.'),
-          actions: [
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
