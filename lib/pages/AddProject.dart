@@ -32,7 +32,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
       );
       print(response.secureUrl);
       setState(() {
-        _imageUrl = response.secureUrl!;
+        _imageUrl = response.secureUrl;
       });
     }
   }

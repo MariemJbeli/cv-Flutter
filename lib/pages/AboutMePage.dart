@@ -12,8 +12,7 @@ class AboutMePage extends StatelessWidget {
               AsyncSnapshot<SharedPreferences> snapshot) {
             if (snapshot.hasData) {
               final prefs = snapshot.data!;
-              final username = prefs.getString("username") ??
-                  ""; // Obtenez la valeur de "username" ou une chaîne vide si elle n'est pas définie
+              final username = prefs.getString("username") ?? ""; // Obtenez la valeur de "username" ou une chaîne vide si elle n'est pas définie
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,14 +1,76 @@
-// ignore_for_file: unnecessary_cast
-
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class InscriptionPage extends StatelessWidget {
-  late SharedPreferences prefs;
-  TextEditingController txt_login = TextEditingController();
+class InscriptionPage extends StatefulWidget {
+  @override
+  _InscriptionPageState createState() => _InscriptionPageState();
+}
+
+class _InscriptionPageState extends State<InscriptionPage> {
+  TextEditingController txt_username = TextEditingController();
   TextEditingController txt_password = TextEditingController();
+  String? _imageUrl;
+  final cloudinary = CloudinaryPublic('dcd85e7v0', 'lcxie1ud', cache: false);
+  Future<void> _uploadImage() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      CloudinaryResponse response = await cloudinary.uploadFile(
+        CloudinaryFile.fromFile(pickedImage.path,
+            resourceType: CloudinaryResourceType.Image),
+      );
+      print(response.secureUrl);
+      setState(() {
+        _imageUrl = response.secureUrl;
+      });
+    }
+  }
+
+  void _submitForm() async {
+    String username = txt_username.text;
+    String password = txt_password.text;
+    String imageUrl = _imageUrl ?? '';
+
+    final response = await http.post(
+      Uri.parse('http://localhost:3000/users'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'username': username,
+        'password': password,
+        'imageUrl': imageUrl,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setBool('connecte', true);
+      prefs.setString('username', username);
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to register. Please try again.'),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +95,26 @@ class InscriptionPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 32),
+              GestureDetector(
+                onTap: _uploadImage,
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey[300],
+                  ),
+                  child: _imageUrl != null
+                      ? CircleAvatar(backgroundImage: NetworkImage(_imageUrl!))
+                      : Icon(Icons.camera_alt, size: 50.0),
+                ),
+              ),
+              SizedBox(height: 16),
               TextFormField(
-                controller: txt_login,
+                controller: txt_username,
                 decoration: InputDecoration(
                   labelText: 'Username',
-                  prefixIcon: Icon(Icons.person_3),
+                  prefixIcon: Icon(Icons.person),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -45,11 +122,11 @@ class InscriptionPage extends StatelessWidget {
               ),
               SizedBox(height: 16),
               TextFormField(
-                obscureText: true,
                 controller: txt_password,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: Icon(Icons.password),
+                  prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -57,79 +134,20 @@ class InscriptionPage extends StatelessWidget {
               ),
               SizedBox(height: 32),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: Colors.pink,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  onInscrire(context);
-                },
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 22),
-                ),
+                onPressed: _submitForm,
+                child: Text('Sign Up'),
               ),
               SizedBox(height: 16),
               TextButton(
-                child: Text(
-                  'Already have an account? Log In',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.pink,
-                  ),
-                ),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/authentification');
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
+                child: Text('Already have an account? Log In'),
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void onInscrire(BuildContext context) async {
-    final String apiUrl =
-        'http://localhost:3000/users'; // Replace with your JSON server URL
-
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'username': txt_login.text,
-        'password': txt_password.text,
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setBool('connecte', true);
-      prefs.setString("username", txt_login.text);
-      Navigator.pushReplacementNamed(context, '/home');
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to register. Please try again.'),
-            actions: [
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
   }
 }
