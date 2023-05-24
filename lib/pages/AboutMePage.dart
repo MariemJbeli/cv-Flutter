@@ -1,30 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AboutMePage extends StatelessWidget {
+class User {
+  String username;
+  String password;
+  String imageUrl;
+
+  User({
+    required this.username,
+    required this.password,
+    required this.imageUrl,
+  });
+}
+
+class AboutMePage extends StatefulWidget {
+  @override
+  _AboutMePageState createState() => _AboutMePageState();
+}
+
+class _AboutMePageState extends State<AboutMePage> {
+  User? user; // Store the current user
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool connecte = prefs.getBool('connecte') ?? false;
+    String? username = prefs.getString('username');
+
+    if (connecte && username != null) {
+      final response = await http
+          .get(Uri.parse('http://localhost:3000/users?username=$username'));
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body) as List<dynamic>;
+        if (jsonData.isNotEmpty) {
+          final userData = jsonData[0];
+          user = User(
+            username: userData['username'],
+            password: userData['password'],
+            imageUrl: userData['imageUrl'],
+          );
+        }
+      } else {
+        // Handle error
+      }
+    } else {
+      // User is not logged in
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: FutureBuilder<SharedPreferences>(
-          future: SharedPreferences.getInstance(),
-          builder: (BuildContext context,
-              AsyncSnapshot<SharedPreferences> snapshot) {
-            if (snapshot.hasData) {
-              final prefs = snapshot.data!;
-              final username = prefs.getString("username") ?? ""; // Obtenez la valeur de "username" ou une chaîne vide si elle n'est pas définie
-
-              return Column(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 20),
                   CircleAvatar(
                     radius: 80,
-                    backgroundImage: AssetImage('images/ismahen.jpeg'),
+                    backgroundImage:
+                        user != null ? NetworkImage(user!.imageUrl) : null,
                   ),
                   SizedBox(height: 20),
                   Text(
-                    username,
+                    user != null ? user!.username : '',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -52,13 +105,8 @@ class AboutMePage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                 ],
-              );
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
-      ),
+              ),
+            ),
     );
   }
 }

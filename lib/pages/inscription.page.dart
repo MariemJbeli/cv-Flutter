@@ -36,7 +36,57 @@ class _InscriptionPageState extends State<InscriptionPage> {
     String password = txt_password.text;
     String imageUrl = _imageUrl ?? '';
 
-    final response = await http.post(
+    if (_imageUrl == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Please select an image.'),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    final response = await http.get(
+      Uri.parse('http://localhost:3000/users?username=$username'),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body) as List<dynamic>;
+      if (jsonData.isNotEmpty) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text(
+                  'Username already exists. Please choose a different username.'),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+    }
+
+    final postResponse = await http.post(
       Uri.parse('http://localhost:3000/users'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
@@ -46,7 +96,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
       }),
     );
 
-    if (response.statusCode == 201) {
+    if (postResponse.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool('connecte', true);
       prefs.setString('username', username);
