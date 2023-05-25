@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutterauth3/pages/SkillsPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -8,11 +7,11 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddSkillsPage extends StatefulWidget {
-  // const AddSkillsPage({Key? key}) : super(key: key);
   final VoidCallback onSkillsAdded;
 
   const AddSkillsPage({Key? key, required this.onSkillsAdded})
       : super(key: key);
+
   @override
   _AddSkillsPageState createState() => _AddSkillsPageState();
 }
@@ -20,10 +19,10 @@ class AddSkillsPage extends StatefulWidget {
 class _AddSkillsPageState extends State<AddSkillsPage> {
   final _formKey = GlobalKey<FormState>();
   late String _title;
-
   String? _imageUrl;
 
   final cloudinary = CloudinaryPublic('dcd85e7v0', 'lcxie1ud', cache: false);
+
   Future<void> _uploadImage() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -41,22 +40,40 @@ class _AddSkillsPageState extends State<AddSkillsPage> {
   }
 
   void _submitForm() async {
-    String imageUrl = _imageUrl ?? '';
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      if (_imageUrl == null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Please select an image.'),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+
       final prefs = await SharedPreferences.getInstance();
-      final userId = prefs.getInt(
-          'id'); // Récupérer l'ID de l'utilisateur depuis le localStorage
+      final userId = prefs.getInt('id');
 
       final response = await http.post(
         Uri.parse('http://localhost:3000/skills'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'title': _title,
-
-          'imageUrl': imageUrl,
-          'userId': userId, // Ajouter l'ID de l'utilisateur dans la requête
+          'imageUrl': _imageUrl,
+          'userId': userId,
         }),
       );
 
@@ -64,7 +81,7 @@ class _AddSkillsPageState extends State<AddSkillsPage> {
         widget.onSkillsAdded();
         Navigator.pop(context);
       } else {
-        throw Exception('Failed to add project');
+        throw Exception('Failed to add skill');
       }
     }
   }
@@ -113,7 +130,6 @@ class _AddSkillsPageState extends State<AddSkillsPage> {
                     _title = value!;
                   },
                 ),
-                const SizedBox(height: 16.0),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _submitForm,

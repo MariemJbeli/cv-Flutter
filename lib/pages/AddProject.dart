@@ -59,6 +59,26 @@ class _AddProjectPageState extends State<AddProjectPage> {
           'userId': userId, // Ajouter l'ID de l'utilisateur dans la requête
         }),
       );
+      if (_imageUrl == null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Please select an image.'),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
       if (response.statusCode == 201) {
         widget.onProjectAdded(); // Appel de la fonction de rappel
         Navigator.of(context).pop(); // Revenir à la page précédente
