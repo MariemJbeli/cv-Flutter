@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauth3/pages/Project.dart';
+
+import 'package:flutterauth3/pages/SkillsPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddProjectPage extends StatefulWidget {
-  //const AddProjectPage({Key? key}) : super(key: key);
-  final VoidCallback onProjectAdded;
-
-  const AddProjectPage({Key? key, required this.onProjectAdded})
-      : super(key: key);
+class AddSkillsPage extends StatefulWidget {
+  const AddSkillsPage({Key? key}) : super(key: key);
 
   @override
-  _AddProjectPageState createState() => _AddProjectPageState();
+  _AddSkillsPageState createState() => _AddSkillsPageState();
 }
 
-class _AddProjectPageState extends State<AddProjectPage> {
+class _AddSkillsPageState extends State<AddSkillsPage> {
   final _formKey = GlobalKey<FormState>();
   late String _title;
-  late String _description;
+
   String? _imageUrl;
 
   final cloudinary = CloudinaryPublic('dcd85e7v0', 'lcxie1ud', cache: false);
@@ -50,18 +47,18 @@ class _AddProjectPageState extends State<AddProjectPage> {
           'id'); // Récupérer l'ID de l'utilisateur depuis le localStorage
 
       final response = await http.post(
-        Uri.parse('http://localhost:3000/projects'),
+        Uri.parse('http://localhost:3000/skills'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'title': _title,
-          'description': _description,
+
           'imageUrl': imageUrl,
           'userId': userId, // Ajouter l'ID de l'utilisateur dans la requête
         }),
       );
+
       if (response.statusCode == 201) {
-        widget.onProjectAdded(); // Appel de la fonction de rappel
-        Navigator.of(context).pop(); // Revenir à la page précédente
+        Navigator.pop(context);
       } else {
         throw Exception('Failed to add project');
       }
@@ -71,7 +68,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Project')),
+      appBar: AppBar(title: const Text('Add skill')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -113,18 +110,6 @@ class _AddProjectPageState extends State<AddProjectPage> {
                   },
                 ),
                 const SizedBox(height: 16.0),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Description'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a description';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _description = value!;
-                  },
-                ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _submitForm,

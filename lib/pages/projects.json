@@ -138,33 +138,126 @@
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684962911/tpyosz8alcctn8avze4w.png",
       "userId": 3,
       "id": 17
+    },
+    {
+      "title": "45",
+      "description": "45",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965461/rf3qpofniohznzedfrhk.png",
+      "userId": 3,
+      "id": 18
+    },
+    {
+      "title": "ia",
+      "description": "ia",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965582/mkocpoirw7yutircf34b.jpg",
+      "userId": 3,
+      "id": 19
+    },
+    {
+      "title": "jj",
+      "description": "jj",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965635/m7aarnci0n3udufsjje7.png",
+      "userId": 3,
+      "id": 20
+    },
+    {
+      "title": "FF ",
+      "description": "ff",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965789/lwwms3gplygsc9ccgejb.png",
+      "userId": 3,
+      "id": 21
+    },
+    {
+      "title": "hello world",
+      "description": "dd",
+      "imageUrl": "",
+      "userId": 1,
+      "id": 22
+    },
+    {
+      "title": "tee ",
+      "description": "tee",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684990276/jfikd5be3akqdvoo7xdh.png",
+      "userId": 1,
+      "id": 23
+    },
+    {
+      "title": "kk",
+      "description": "kk",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684990485/fb80gxwgeolzaw7dohxj.jpg",
+      "userId": 1,
+      "id": 24
+    },
+    {
+      "title": "tt",
+      "description": "tt",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684991207/lqduwxqhsapct2zhl99y.webp",
+      "userId": 1,
+      "id": 25
     }
   ],
   "Education": [
     {
-      "year": "2012",
-      "institution": "rrrr",
-      "degree": "rrrrr",
-      "userId": 1,
+      "year": "bb",
+      "institution": "bbb",
+      "userId": 3,
       "id": 1
     },
     {
-      "year": "2016",
-      "institution": "lyce 18 janvier",
+      "year": "ff",
+      "institution": "FF ",
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "year": "kk",
+      "institution": "k",
+      "userId": 1,
+      "id": 3
+    }
+  ],
+  "skills": [
+    {
+      "title": "laravel",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684964716/gcugtiezlk4xs2ds1o7u.jpg",
+      "userId": 3,
+      "id": 1
+    },
+    {
+      "title": "ddd",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684964824/zkwqpp8n90k8sgvnkguz.png",
       "userId": 3,
       "id": 2
     },
     {
-      "year": "2150",
-      "institution": "gf",
+      "title": "12345",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965120/nolkza8uu7tska3p6r2d.png",
       "userId": 3,
       "id": 3
     },
     {
-      "year": "ss",
-      "institution": "sss",
+      "title": "14788",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965264/nfikobdfzxpolc7ufddu.png",
       "userId": 3,
       "id": 4
+    },
+    {
+      "title": "145",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965425/ojcz0fnhslgncu12tsog.jpg",
+      "userId": 3,
+      "id": 5
+    },
+    {
+      "title": "sec",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965546/h2lumyrku9e1jv8eylov.png",
+      "userId": 3,
+      "id": 6
+    },
+    {
+      "title": "jsonserver",
+      "imageUrl": "",
+      "userId": 1,
+      "id": 7
     }
   ]
 }

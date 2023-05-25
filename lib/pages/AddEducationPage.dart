@@ -17,7 +17,6 @@ class _AddEducationPageState extends State<AddEducationPage> {
   final _formKey = GlobalKey<FormState>();
   late String _year;
   late String _institution;
-  late String _degree;
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {

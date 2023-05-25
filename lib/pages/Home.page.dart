@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterauth3/pages/CompetancePage.dart';
 import 'package:flutterauth3/pages/EducationPage.dart';
+import 'package:flutterauth3/pages/SkillsPage.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'AboutMePage.dart';

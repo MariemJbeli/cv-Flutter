@@ -55,9 +55,14 @@ class _ProjectsPageState extends State<ProjectsPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddProjectPage()),
-          );
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddProjectPage(
+                  onProjectAdded: () {
+                    _fetchProjects(); // Mettre à jour les projets après l'ajout d'un nouveau projet
+                  },
+                ),
+              ));
         },
         child: Icon(Icons.add),
       ),
