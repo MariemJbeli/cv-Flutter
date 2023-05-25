@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterauth3/pages/AddSkillsPage.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'AddProject.dart';
 import 'dart:convert';
 
 class Skill {
@@ -54,26 +53,80 @@ class _SkillsPageState extends State<SkillsPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddSkillsPage()),
-          ).then((value) {
-            if (value == true) {
-              _fetchSkills();
-            }
-          });
+            MaterialPageRoute(
+              builder: (context) => AddSkillsPage(
+                onSkillsAdded: () {
+                  _fetchSkills(); // Mettre à jour les projets après l'ajout d'un nouveau projet
+                },
+              ),
+            ),
+          );
         },
         child: Icon(Icons.add),
       ),
       body: skills.isEmpty
           ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: skills.length,
-              itemBuilder: (BuildContext context, int index) {
-                final skill = skills[index];
-                return ListTile(
-                  leading: Image.network(skill.imageUrl),
-                  title: Text(skill.title),
-                );
-              },
+          : SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Compétences',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: skills.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final skill = skills[index];
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              skill.imageUrl,
+                              width: 60,
+                              height: 60,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              skill.title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
     );
   }

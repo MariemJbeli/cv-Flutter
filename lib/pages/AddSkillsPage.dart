@@ -8,8 +8,11 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddSkillsPage extends StatefulWidget {
-  const AddSkillsPage({Key? key}) : super(key: key);
+  // const AddSkillsPage({Key? key}) : super(key: key);
+  final VoidCallback onSkillsAdded;
 
+  const AddSkillsPage({Key? key, required this.onSkillsAdded})
+      : super(key: key);
   @override
   _AddSkillsPageState createState() => _AddSkillsPageState();
 }
@@ -58,6 +61,7 @@ class _AddSkillsPageState extends State<AddSkillsPage> {
       );
 
       if (response.statusCode == 201) {
+        widget.onSkillsAdded();
         Navigator.pop(context);
       } else {
         throw Exception('Failed to add project');
