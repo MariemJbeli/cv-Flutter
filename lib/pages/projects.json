@@ -11,12 +11,6 @@
       "password": "123123",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684942443/amnrxtn0xtchbitikdwc.jpg",
       "id": 2
-    },
-    {
-      "username": "thamer",
-      "password": "123123",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684944635/iqtf5wcpbkcpjscfdcx0.png",
-      "id": 3
     }
   ],
   "projects": [
@@ -39,28 +33,28 @@
       "description": "vue.js/Bootstrap",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126312/bu4zuexyglnrrqyxe5oi.png",
       "id": 3,
-      "userId": 1
+      "userId": 2
     },
     {
       "title": "work_website",
       "description": "MEAN STACK/Bootstrap",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126358/o3nurgwzisy9yo0ogysl.png",
       "id": 4,
-      "userId": 1
+      "userId": 2
     },
     {
       "title": "dashbord(gestion des employés)",
       "description": "MEAN STACK/Bootstrap",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126421/g6xhk2ekrvfaziqu8rop.png",
       "id": 5,
-      "userId": 1
+      "userId": 2
     },
     {
       "title": "social-app ",
       "description": "MERN STACK/Tailwindcss",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126461/yuomwkfbff5xl8qsuuwz.png",
       "id": 6,
-      "userId": 1
+      "userId": 2
     },
     {
       "title": "shop",
@@ -81,7 +75,7 @@
       "description": "react&redux/bootstrap",
       "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1683126580/moxxrno6xhmbdp8tkj5i.png",
       "id": 9,
-      "userId": 1
+      "userId": 2
     },
     {
       "title": "catstore",
@@ -91,173 +85,45 @@
       "userId": 1
     },
     {
-      "title": "123",
-      "description": "123",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684945458/w953zujuvwqarrirpef3.jpg",
+      "title": "web static",
+      "description": "web static",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684999992/lzuwge444lw0vqor8qmw.png",
       "userId": 1,
       "id": 11
-    },
-    {
-      "title": "securite",
-      "description": "securite",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684954748/hxaj4ustfc9awuabflsk.png",
-      "userId": 1,
-      "id": 12
-    },
-    {
-      "title": "securite",
-      "description": "123123",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684955074/msnpqhcbegwdypw1hbho.jpg",
-      "userId": 2,
-      "id": 13
-    },
-    {
-      "title": "9taytsa",
-      "description": "9taytsa",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684962490/usriot5fdff3szgzoltp.jpg",
-      "userId": 3,
-      "id": 14
-    },
-    {
-      "title": "123",
-      "description": "123",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684962542/j4qwvqhyzgtu1azamtqa.png",
-      "userId": 3,
-      "id": 15
-    },
-    {
-      "title": "1478",
-      "description": "1475",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684962665/u106dntoqvttga1j2bi7.jpg",
-      "userId": 3,
-      "id": 16
-    },
-    {
-      "title": "dd",
-      "description": "ddd",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684962911/tpyosz8alcctn8avze4w.png",
-      "userId": 3,
-      "id": 17
-    },
-    {
-      "title": "45",
-      "description": "45",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965461/rf3qpofniohznzedfrhk.png",
-      "userId": 3,
-      "id": 18
-    },
-    {
-      "title": "ia",
-      "description": "ia",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965582/mkocpoirw7yutircf34b.jpg",
-      "userId": 3,
-      "id": 19
-    },
-    {
-      "title": "jj",
-      "description": "jj",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965635/m7aarnci0n3udufsjje7.png",
-      "userId": 3,
-      "id": 20
-    },
-    {
-      "title": "FF ",
-      "description": "ff",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965789/lwwms3gplygsc9ccgejb.png",
-      "userId": 3,
-      "id": 21
-    },
-    {
-      "title": "hello world",
-      "description": "dd",
-      "imageUrl": "",
-      "userId": 1,
-      "id": 22
-    },
-    {
-      "title": "tee ",
-      "description": "tee",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684990276/jfikd5be3akqdvoo7xdh.png",
-      "userId": 1,
-      "id": 23
-    },
-    {
-      "title": "kk",
-      "description": "kk",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684990485/fb80gxwgeolzaw7dohxj.jpg",
-      "userId": 1,
-      "id": 24
-    },
-    {
-      "title": "tt",
-      "description": "tt",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684991207/lqduwxqhsapct2zhl99y.webp",
-      "userId": 1,
-      "id": 25
     }
   ],
   "Education": [
     {
-      "year": "bb",
-      "institution": "bbb",
-      "userId": 3,
+      "year": "2023",
+      "institution": "iset sfax",
+      "userId": 1,
       "id": 1
     },
     {
-      "year": "ff",
-      "institution": "FF ",
+      "year": "2019",
+      "institution": "lycee 18 janvier",
       "userId": 1,
       "id": 2
     },
     {
-      "year": "kk",
-      "institution": "k",
-      "userId": 1,
+      "year": "2023",
+      "institution": "fseg",
+      "userId": 2,
       "id": 3
     }
   ],
   "skills": [
     {
-      "title": "laravel",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684964716/gcugtiezlk4xs2ds1o7u.jpg",
-      "userId": 3,
+      "title": "angular",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684999757/hwovn7ydz1biyqbmmbqk.png",
+      "userId": 1,
       "id": 1
     },
     {
-      "title": "ddd",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684964824/zkwqpp8n90k8sgvnkguz.png",
-      "userId": 3,
+      "title": "mongodB",
+      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1685000033/yu3tiqmrzmbacqjas2h8.png",
+      "userId": 2,
       "id": 2
-    },
-    {
-      "title": "12345",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965120/nolkza8uu7tska3p6r2d.png",
-      "userId": 3,
-      "id": 3
-    },
-    {
-      "title": "14788",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965264/nfikobdfzxpolc7ufddu.png",
-      "userId": 3,
-      "id": 4
-    },
-    {
-      "title": "145",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965425/ojcz0fnhslgncu12tsog.jpg",
-      "userId": 3,
-      "id": 5
-    },
-    {
-      "title": "sec",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684965546/h2lumyrku9e1jv8eylov.png",
-      "userId": 3,
-      "id": 6
-    },
-    {
-      "title": "sécurité",
-      "imageUrl": "https://res.cloudinary.com/dcd85e7v0/image/upload/v1684994741/fc1dz8rwemgcpcfzmcvj.png",
-      "userId": 1,
-      "id": 8
     }
   ]
 }
