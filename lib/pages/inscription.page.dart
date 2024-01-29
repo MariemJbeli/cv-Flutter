@@ -127,7 +127,7 @@ class _InscriptionPageState extends State<InscriptionPage> {
     }
 
     final postResponse = await http.post(
-      Uri.parse('http://localhost:3000/users'),
+      Uri.parse('http://localhost:51183/users'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'username': username,
